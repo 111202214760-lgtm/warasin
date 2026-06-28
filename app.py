@@ -1,7 +1,7 @@
 import gradio as gr
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
-
+import os
 # =========================
 # LOAD MODEL
 # =========================
@@ -152,4 +152,9 @@ with gr.Blocks(
 # =========================
 # RUN
 # =========================
-demo.launch(share=True)
+port = int(os.environ.get("PORT", 7860))
+
+demo.launch(
+    server_name="0.0.0.0",
+    server_port=port
+)
